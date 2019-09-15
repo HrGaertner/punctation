@@ -1,0 +1,20 @@
+zwischen kon. Verben entweder Satzende , Konjunktionen
+Satzende .?!
+Satz SV optional O
+Nebensatz fehlt etwas
+
+part of speech tagging
+https://datascience.blog.wzb.eu/2016/07/13/accurate-part-of-speech-tagging-of-german-texts-with-nltk/
+
+
+https://towardsdatascience.com/a-practitioners-guide-to-natural-language-processing-part-i-processing-understanding-text-9f4abfd13e72
+
+https://medium.com/@praneethbedapudi/deepcorrection-1-sentence-segmentation-of-unpunctuated-text-a1dbc0db4e98
+
+https://cmusphinx.github.io/
+
+https://realpython.com/python-speech-recognition/
+
+https://github.com/ynop/deepspeech-german
+
+https://www.inf.uni-hamburg.de/en/inst/ab/lt/resources/data/acoustic-models.html

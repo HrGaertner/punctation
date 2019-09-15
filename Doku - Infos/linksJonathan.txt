@@ -1,0 +1,12 @@
+http://bpraneeth.com/projects/deeppunct
+https://github.com/ottokart/punctuator2
+http://bark.phon.ioc.ee/punctuator/game
+keyword: punctuation in python
+https://cloud.google.com/speech-to-text/docs/automatic-punctuation#speech-automatic-punctuation-python
+https://www.ims.uni-stuttgart.de/forschung/ressourcen/lexika/TagSets/stts-table.html
+
+Fahrplan: Worttyp abfolge zwischen zwei Verben (erstmal für feste Längen) auf Position des Satzzeichens mappen. Erkennnt man hier eine Struktur?
+Heute   esse    ich         Pizza   Morgen    esse    ich     Schnitzel
+        Verb    Pronomen    Nomen   Adverb    Verb
+
+[Pronomen, Nomen, Adverb] -> Punkt hinter Nomen. 
