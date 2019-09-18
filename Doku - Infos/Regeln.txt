@@ -1,0 +1,69 @@
+ 
+
+4. Grammatische Regeln: 
+
+Um unserem Programm beizubringen wo die Kommas, etc. hingehören, müssen wir erstmal 	klare Regeln formulieren.  
+
+4.1 Satzende: 
+
+Als erstes muss unser Programm wissen wo es Satzenden hinsetzen muss, weil es dann den 	Text nur noch Satzweise analysieren muss. 
+
+4.1.1 Satzanalyse: 
+
+4.1.2 Sprachanalyse: 
+
+Am Ende eines Satzes macht man eine kleine Pause oder geht bei einer Frage mit der Stimme 	nach oben. 
+
+ 
+
+ 
+
+4.2 Nominalisierung: 
+
+4.3 Kommata: 
+
+4.3.1 Aufzählung: 
+
+Nomen (mitbestimmt und unbestimmten Artikeln) oder Adjektive die direkt 	nebeneinanderstehen und am Ende ein Nomen das mit einem und, oder, beziehungsweise 	oder sowie getrennt ist. In dem Fall sind außerdem „Nomen“ etc. ähnliche des Weiteren. 
+
+(Manchmal sind das Nomen auch mit Adjektiven beschrieben) 
+
+4.3.2 Komma vor bestimmten Worten: 
+
+Vor den Worten aber, sondern, jedoch 
+
+ 
+
+4.3.3 Anreden: 
+
+Nach Anreden kommt ein Komma und ein Absatz 
+
+4.3.4 Präzisierungen: 
+
+Präzisierungen werden durch Kommata vorne und hinten abgetrennt 
+
+4.3.5 Nebensätze: 
+
+Mit Kommata trennt man neben Sätze voneinander. 
+
+4.3.7 Konjunktionen die Satzteile verbinden: 
+
+Vor Konjunktionen die Sätze verbinden stehen Kommata. 
+
+4.3.8 Gliedsatz: 
+
+Manche Gliedsätze werden von Kommata unterteilt 
+
+4.3.8.1 Bei folgenden Satztypen: 
+
+Gliedsätze die Kausal-, Temporal-, Konditional-, Konzessiv-, Konsekutiv-, Final- oder 	Modalsätze sind werden durch Kommata getrennt. 
+
+4.3.8.2 Fragesatz: 
+
+Bei indirekten Fragesätzen werden Gliedsätzen mit Kommas abgetrennt. 
+
+4.3.8.3 Relativsätze: 
+
+Bei relativen Sätzen werden Gliedsätze mit Kommas abgetrennt. 
+
+4.3.8.4  
