@@ -5,3 +5,6 @@ de_400k_nnet3chain_tdnn1f_2048_sp_bi.tar
 /sentence.txt
 /process.txt
 /preprocess.txt
+/final_raw.pickle
+/feature.pickle
+/knn.py
