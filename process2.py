@@ -12,6 +12,26 @@ with  open("tokenized.pickle", "rb") as f:
 print("Loaded")
 print()
 
+tags_set = ["PPER", "APPRART", "PWS", "NE", "PRELS", "KOKOM", "PIAT", "CARD", "VMINF", "PIS", "XY", "PTKANT", "PTKNEG", "APPR", "ADV", "KON", "VMFIN", "APZR", "ADJD", "PDS", "VVFIN", "PRF", "VAINF", "ADJA", "$.", "TRUNC", "VVPP", "PDAT", "ART", "NN", "PPOSAT", "VVINF", "$(", "VAPP", "$,", "PWAV", "KOUS", "KOUI", "FM", "VVIZU", "VVIMP", "VAFIN", "PTKZU", "PTKVZ", "PROAV"]
+
+tags = []
+
+for tag in tagged:
+    if tag in tags_set:
+        tags.append(tags_set.index(tag))
+    else:
+        print(tag)
+        tags_set.append(tag)
+        tags.append(tags_set.index(tag))
+print("processed")
+print()
+with open("final_raw.pickle", "wb") as f:
+    pickle.dump(tags, f)
+
+print(tags_set)
+print()
+
+tagged = tags
 feature = []
 vec = []
 punctation = []
@@ -48,7 +68,7 @@ for i in range(0, len(tagged)):
         punctation = []
         punctation2 = []
 while len(tagged) < 40:
-    tagged.append("NULL")
+    tagged.append(100)
     f_vector.append(vec)
     f_feature.append(sentence)
 

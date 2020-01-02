@@ -1,45 +1,54 @@
-PPER
-APPRART
-PWS
-NE
-PRELS
-KOKOM
-PIAT
-CARD
-VMINF
-PIS
-XY
-PTKANT
-PTKNEG
-APPR
-ADV
-KON
-VMFIN
-APZR
-ADJD
-PDS
-VVFIN
-PRF
-VAINF
-ADJA
-$.
-TRUNC
-VVPP
-PDAT
-ART
-NN
-PPOSAT
-VVINF
-$(
-VAPP
-$,
-PWAV
-KOUS
-KOUI
-FM
-VVIZU
-VVIMP
-VAFIN
-PTKZU
-PTKVZ
-PROAV
+['PPER',
+ 'APPRART',
+ 'PWS',
+ 'NE',
+ 'PRELS',
+ 'KOKOM',
+ 'PIAT',
+ 'CARD',
+ 'VMINF',
+ 'PIS',
+ 'XY',
+ 'PTKANT',
+ 'PTKNEG',
+ 'APPR',
+ 'ADV',
+ 'KON',
+ 'VMFIN',
+ 'APZR',
+ 'ADJD',
+ 'PDS',
+ 'VVFIN',
+ 'PRF',
+ 'VAINF',
+ 'ADJA',
+ '$.',
+ 'TRUNC',
+ 'VVPP',
+ 'PDAT',
+ 'ART',
+ 'NN',
+ 'PPOSAT',
+ 'VVINF',
+ '$(',
+ 'VAPP',
+ '$,',
+ 'PWAV',
+ 'KOUS',
+ 'KOUI',
+ 'FM',
+ 'VVIZU',
+ 'VVIMP',
+ 'VAFIN',
+ 'PTKZU',
+ 'PTKVZ',
+ 'PROAV',
+ 'VAIMP',
+ 'NNE',
+ 'PWAT',
+ 'APPO',
+ 'ITJ',
+ 'PRELAT',
+ 'VMPP',
+ 'PPOSS',
+ 'PTKA']
