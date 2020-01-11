@@ -6,13 +6,15 @@ def tag(liste):
         tagger = pickle.load(f)
         return tagger.tag(liste)
 
-with  open("final_raw.pickle", "rb") as f:
+with  open("tokenized.pickle", "rb") as f:
     tagged = pickle.load(f)
 
-tagged = tags
+print("Loaded")
+print()
+
 feature = []
 vec = []
-punctation2 = []
+punctation = []
 punc_vec = []
 event = False
 
@@ -20,33 +22,46 @@ f_feature = []
 f_vector = []
 
 for i in range(0, len(tagged)):
-    if tagged[i] == 24:
+    if tagged[i] == "$.":
         event = True
         punctation = []
-        punctation2 = []
         punc_vec = []
+    elif tagged[i] == "$,":
+        pass
     else:
         feature.append(tagged[i])
-        punctation2.append(tagged[i])
+        punctation.append(tagged[i])
         if event:
             vec.append(1)
             punc_vec.append(1)
+            event = False
         else:
             vec.append(0)
             punc_vec.append(0)
         if len(vec) == 40:
             f_vector.append(vec)
-            f_feature.append(tagged)
-            feature = punctation2
+            f_feature.append(feature)
+            feature = punctation
             vec = punc_vec
-            punctation2, punc_vec = [], []
+            punctation, punc_vec = [], []
     print(i)
-    if len(punctation2) >= 39:
-        punctation2 = []
-while len(tagged) < 40:
-    tagged.append(100)
+    if len(punctation) >= 39:
+        punctation = []
+        punc_vec = []
+
+"""while len(tagged) < 40:
+    tagged.append("NULL")
     f_vector.append(vec)
-    f_feature.append(sen)
+    f_feature.append(sentence)"""
+    
+if feature != 40:
+    vec.append(1)
+    feature.append("NULL")
+    for i in range(len(vec), 40):
+        feature.append("NULL")
+        vec.append(0)
+    f_feature.append(feature)
+    f_vector.append(vec)
 
 with open('vec.pickle', 'wb') as f_vec:
     pickle.dump(f_vector, f_vec)
