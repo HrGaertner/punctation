@@ -33,6 +33,8 @@ def create_lstm_model(vocab_size, embedding_size=None, embedding_weights=None):
     return model
 
 lstm_model = create_lstm_model(40,)
+lstm_model.save("lstm_punctator")
 lstm_model.summary()
 lstm_model.fit(train_data, train_targets, epochs=12, batch_size=1024, callbacks=[early])
-lstm_model.evaluate(test_data, test_targets) 
+lstm_model.save_weights("lstm_punctator.h5")
+lstm_model.evaluate(test_data, test_targets)
