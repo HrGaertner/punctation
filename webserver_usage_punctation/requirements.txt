@@ -1,0 +1,6 @@
+pip install flask-socketio
+pip install flask
+pip install eventlet
+pip install SpeechRecognition
+pip install --upgrade pip setuptools wheel
+pip install --upgrade pocketsphinx
