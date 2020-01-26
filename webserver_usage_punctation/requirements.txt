@@ -4,3 +4,5 @@ pip install eventlet
 pip install SpeechRecognition
 pip install --upgrade pip setuptools wheel
 pip install --upgrade pocketsphinx
+pip install numpy
+pip install nltk

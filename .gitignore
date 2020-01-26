@@ -1,1 +1,6 @@
 /feature_extraction/dataset.pickle
+/feature_extraction/tagged.pickle
+/webserver_usage_punctation/punctation_lib/lstm_punctator
+/webserver_usage_punctation/punctation_lib/lstm_punctator.h5
+/webserver_usage_punctation/ClassifierBasedGermanTagger/
+/webserver_usage_punctation/output/

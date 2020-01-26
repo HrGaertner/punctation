@@ -54,7 +54,7 @@ for i in range(0, len(tagged)):
     f_vector.append(vec)
     f_feature.append(sentence)"""
     
-if feature != 40:
+if len(feature) != 40:
     vec.append(1)
     feature.append("NULL")
     for i in range(len(vec), 40):

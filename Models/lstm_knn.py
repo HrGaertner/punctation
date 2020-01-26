@@ -17,7 +17,7 @@ train_data, train_targets = np.array(train_data), np.array(train_targets)
 
 def create_lstm_model(vocab_size, embedding_size=None, embedding_weights=None):
     message = Input(shape=40, dtype='int32', name='lstm_input')
-    embedding = Embedding(mask_zero=False, input_dim=54,
+    embedding = Embedding(mask_zero=False, input_dim=55,
                           output_dim=128,
                           trainable=True,
                           name='lstm_embedding')(message)

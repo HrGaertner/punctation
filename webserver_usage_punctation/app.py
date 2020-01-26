@@ -1,6 +1,8 @@
 from flask import Flask, render_template# importing needed librarys
 from flask_socketio import SocketIO
 import speech_recognition as sr
+from punctation_lib.knn_use import punctate
+from punctation_lib import process
 
 app = Flask(__name__)# Setting up socket io and flask
 app.config['SECRET_KEY'] = 'secret!'
@@ -11,23 +13,27 @@ r = sr.Recognizer()
 def index():
     return render_template('index.html')
 
-@app.route('/receive')
-def getting_wav(fd):
-    print(fd)
-
-@socketio.on('message')
-def handle_message(message):
-    print('received message: ' + message)
-
-
-@socketio.on('my event')
-def handle_my_custom_event(byte):
-    print('received json: ' + str(byte))
-
 @socketio.on('get_audio')
-def audio(audio):
-    audio = sr.AudioData(audio["wav blob"], audio["sampleRate"], 2)
-    output = r.recognize_google(audio, language=audio["language"])
-    print(output)
+def audio(meta_data):
+    audio = sr.AudioData(meta_data["wav blob"], meta_data["sampleRate"], 2)
+    text = r.recognize_sphinx(audio, language=meta_data["language"])
+    if text:
+        text = punctate(text)
+        text = text[0].upper() + text[1:]
+    socketio.emit("textarea_text", text)
+
+@socketio.on('punctate')
+def text_punctation(text):
+    if text:
+        text = punctate(text)
+        text = text[0].upper + text[1:]
+    print(text)
+    socketio.emit("textarea_text", text)
+
+@socketio.on("add_to_training")
+def make_training(data):
+    print("Wuhu")
+    process(data)
+
 if __name__ == '__main__':
     socketio.run(app, debug=True)

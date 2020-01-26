@@ -20,11 +20,14 @@
   	 <button id="stopButton" disabled>Stop</button>
     </div>
     <div id="formats">Format: start recording to see sample rate</div>
-  	<p><strong>Recordings:</strong></p>
-  	<ol id="recordingsList"></ol>
+  	<p><strong>Result or Text input:</strong></p>
+    <form>
+        <textarea id="Interface_text" placeholder="You can enter text her for punctation. If you use the Speech Recognition the results will appear her"></textarea>
+        <button id="correct/enter" type="submit">Enter</input>
+    </form>
     <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
   	<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script> <script type="text/javascript"
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
   </body>
 </html>

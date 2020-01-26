@@ -3,8 +3,8 @@ import pickle
 import nltk
 import numpy as np
 
-model = load_model("punctator")
-model.load_weights("punctator.h5")
+model = load_model("punctation_lib/lstm_punctator")
+model.load_weights("punctation_lib/lstm_punctator.h5")
 
 
 def tag(tokenized):#tagging and converting to digits
@@ -22,29 +22,19 @@ def tag(tokenized):#tagging and converting to digits
             tag_sen.append(tag_set.index(sen_tag[1]))
     return tag_sen
 
-def main(data):
+def punctate(data):
+    model = load_model("punctation_lib/lstm_punctator")
+    model.load_weights("punctation_lib/lstm_punctator.h5")
     sen = nltk.word_tokenize(data, "german")
     data = tag(sen)
     punctation = 0
     nulls = 0
-    """for i in range(0, len(data)+1, 40):
-        if i == 0:
-            continue
-        print(i)
-        vec = model.predict([data[i-40:i], data[i-40:i])[0]
-        vec_list = vec.tolist()
-        vec_list[0] = 0.0
-        vec_list[1] = 0.0
-        maxid = vec_list.index(max(vec_list)) + i - 41
-        sen[maxid] = sen[maxid] + "."
-        punctation = maxid -i + 40 """
-    punctation = 0
     nulls = 0
+    while len(data) % 40 != 0:  # You can divide through 40 so everything goes through the ANN
+        data.append(54)
+        nulls += 1
     i = 0
-    print("Test")
-    while i < len(data):
-        print(len(data))
-        print(i)
+    while i <= len(data):
         if i == 0:
             i += 40
             continue
@@ -67,10 +57,10 @@ def main(data):
             sen[-1] = sen[-1] + "."
         punctation = 40 - maxid_relativ
         i += 40 - punctation # NULL
-        print(i)
     sen = ' '.join(sen)
-    print(sen)
+    return sen
 
 if __name__ == "__main__":
     data = input("Was soll punktiert werden?")
-    main(data)
+    sen = punctate(data)
+    print(sen)
