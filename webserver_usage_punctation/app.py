@@ -15,6 +15,7 @@ def index():
 
 @socketio.on('get_audio')
 def audio(meta_data):
+    print("weird")
     audio = sr.AudioData(meta_data["wav blob"], meta_data["sampleRate"], 2)
     text = r.recognize_sphinx(audio, language=meta_data["language"])
     if text:
@@ -26,14 +27,14 @@ def audio(meta_data):
 def text_punctation(text):
     if text:
         text = punctate(text)
-        text = text[0].upper + text[1:]
+        text = text[0].upper() + text[1:]
     print(text)
     socketio.emit("textarea_text", text)
 
 @socketio.on("add_to_training")
 def make_training(data):
-    print("Wuhu")
     process(data)
+    #socketio.emit("textarea_text", data)
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)

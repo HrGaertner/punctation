@@ -12,13 +12,13 @@ var audioContext //audio context to help us record
 var recordButton = document.getElementById("recordButton");
 var stopButton = document.getElementById("stopButton");
 var pauseButton = document.getElementById("pauseButton");
-var enter_correct = document.getElementById("correct/enter")
+var enter_correct = document.getElementById("enter_correct")
 
 //add events to those 2 buttons
 recordButton.addEventListener("click", startRecording);
 stopButton.addEventListener("click", stopRecording);
 pauseButton.addEventListener("click", pauseRecording);
-//enter_correct.addEventListener("click", textarea_action);
+enter_correct.addEventListener("click", textarea_action);
 
 
 var textarea = document.getElementById("Interface_text");
@@ -32,13 +32,16 @@ socket.on('connect', function() {
 
 
 function textarea_action() {
+    console.log("correct_enter button pressed")
     if(correct){
+        console.log("Adding this text to training data");
         socket.emit("add_to_training", textarea.value);
         correct = 0;
-        enter_correct,innerHTML("Enter");
+        enter_correct.innerHTML="Enter";
     } else{
+        console.log("Punctating...");
         socket.emit("punctate", textarea.value);
-        enter_correct,innerHTML("Correct");
+        enter_correct.innerHTML="Correct";
         correct = 1;
     }
 }
@@ -142,12 +145,10 @@ function stopRecording() {
 
 function createDownloadLink(blob) {
     socket.emit("get_audio", {"wav blob" : blob, "sampleRate" : audioContext.sampleRate, "language":"de-DE"});
-    enter_correct,innerHTML("Correct");
+    enter_correct.innerHTML="Correct";
     correct = 1;
 }
 
 socket.on('textarea_text', function (data) {
-    textarea.innerHTML=data;
-    correct=1;
-    enter_correct.innerHTML="Correct";
+    textarea.value=data;
  });
