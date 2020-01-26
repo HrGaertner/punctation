@@ -37,11 +37,11 @@ function textarea_action() {
         console.log("Adding this text to training data");
         socket.emit("add_to_training", textarea.value);
         correct = 0;
-        enter_correct.innerHTML="Absenden";
+        enter_correct.innerHTML="Enter";
     } else{
         console.log("Punctating...");
         socket.emit("punctate", textarea.value);
-        enter_correct.innerHTML="Korrigiert";
+        enter_correct.innerHTML="Correct";
         correct = 1;
     }
 }
@@ -113,7 +113,7 @@ function pauseRecording(){
 	if (rec.recording){
 		//pause
 		rec.stop();
-		pauseButton.innerHTML="Fortsetzen";
+		pauseButton.innerHTML="Resume";
 	}else{
 		//resume
 		rec.record()

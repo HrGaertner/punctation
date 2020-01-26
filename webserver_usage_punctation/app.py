@@ -13,6 +13,10 @@ r = sr.Recognizer()
 def index():
     return render_template('index.html')
 
+@app.route('/en')
+def index_en():
+    return render_template('index_en.html')
+
 @socketio.on('get_audio')
 def audio(meta_data):
     print("weird")

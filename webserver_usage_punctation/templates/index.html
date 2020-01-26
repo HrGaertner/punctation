@@ -1,31 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8">
-    <title>Website for using automatic punctator and new data generating</title>
+    <title>Website zur Benutzung der "Punktierung" und der Generierung neuer Trainingsdaten</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- Latest compiled and minified Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   </head>
   <body>
-    <h1>Automatic punctation demo</h1>
+    <form><a href="/">Deutsch </a><a href="/en"> English</a></form>
+    <h1>Automatisches einfügen der Punkte - Demo</h1>
     <p><small>Made by Antonios S. and Jonathan G.</a></small></p>
-    <p>Check out the <a href="https://github.com/HrGaertner/punctation/tree/master/webserver_usage_punctation" target="_blank">code on GitHub</a></p>
-    <h2>Please remember this is just for testing the results will not be right you are here for correcting them</h2>
-    <p>Thanks to you</p>
-    <p>After entering any kind of data (letters or audio) you lose any rights on them</p>
+    <p>Sieh dir den <a href="https://github.com/HrGaertner/punctation/tree/master/webserver_usage_punctation" target="_blank">Code auf GitHub an</a></p>
+    <h2>Denken sie daran diese Website ist nicht für den letztendlichen Nutzen!</h2>
+    <p><strong>Gehen sie davon aus das die Ergebnisse falsch seien werden. Aber deshalb gibt es diese Website.</strong></p>
+    <p>Zur Verbesserung dieses Programms</p>
+    <p>Danke das sie dabei helfen</p>
+    <p><small>Sie verlieren ihre Rechte an allen Daten die sie hier eingeben. Aber seien sie versichert am Ende wird nur die Satzstruktur dauerhaft gespeichert</small></p>
     <div id="controls">
-  	 <button id="recordButton">Record</button>
+  	 <button id="recordButton">Aufnehmen</button>
   	 <button id="pauseButton" disabled>Pause</button>
-  	 <button id="stopButton" disabled>Stop</button>
+  	 <button id="stopButton" disabled>Stopp</button>
     </div>
-    <div id="formats">Format: start recording to see sample rate</div>
-  	<p><strong>Result or Text input:</strong></p>
-    <p>Please be a little bit patient it can take a few moments</p>
-    <textarea id="Interface_text" placeholder="You can enter text her for punctation. If you use the Speech Recognition the results will appear her"></textarea>
-    <button id="enter_correct">Enter</input>
+    <div id="formats">Format: Fange an aufzunehmen um die "sample rate" zu sehen</div>
+  	<p><strong>Ergebnis oder Text Eingabe</strong></p>
+    <p>Bitte haben sie Geduld die Verarbeitung dauert in der Regel ein bisschen</p>
+    <textarea id="Interface_text" rows="4" cols="50" placeholder='Hier kann zu "punktierender" Text eingegeben werden ansonsten erscheinen hier die Ergebnisse'></textarea>
+    <button id="enter_correct">Absenden</input>
     <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
   	<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
