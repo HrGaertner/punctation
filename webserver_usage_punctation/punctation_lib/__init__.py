@@ -80,8 +80,8 @@ def process(data):
                 raise (Exception)
         tags.append(tag_sen)
         i += 1
-
+    print(tags)
     with open('output/vec.pickle'+ str(time.time()), 'wb') as f_vec:
         pickle.dump(np.array(f_vector), f_vec)
     with open("output/feature.pickle"+ str(time.time()), "wb") as f:
-        pickle.dump(np.array(features), f)
+        pickle.dump(np.array(tags), f)
