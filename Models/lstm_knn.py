@@ -15,9 +15,9 @@ early = tensorflow.keras.callbacks.EarlyStopping(monitor='loss',
 
 train_data, train_targets = np.array(train_data), np.array(train_targets)
 """
-train_data = pickle.load(open("feature.pickle1580141348.4191751", "rb")).tolist()
+train_data = pickle.load(open("feature.pickle", "rb")).tolist()
 train_data.append(train_data[0])
-train_targets = pickle.load(open("vec.pickle1580141348.4188616", "rb")).tolist()
+train_targets = pickle.load(open("vec.pickle", "rb")).tolist()
 train_targets.append(train_targets[0])
 
 train_data = np.array(train_data)
