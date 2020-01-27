@@ -84,4 +84,4 @@ def process(data):
     with open('output/vec.pickle'+ str(time.time()), 'wb') as f_vec:
         pickle.dump(np.array(f_vector), f_vec)
     with open("output/feature.pickle"+ str(time.time()), "wb") as f:
-        pickle.dump(np.array(f_feature), f)
+        pickle.dump(np.array(features), f)

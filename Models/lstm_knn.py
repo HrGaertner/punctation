@@ -11,9 +11,15 @@ early = tensorflow.keras.callbacks.EarlyStopping(monitor='loss',
                               verbose=0, mode='auto')
 
 
-(train_data, train_targets), (test_data, test_targets) = pickle.load(open("dataset.pickle", "rb"))
+#(train_data, train_targets), (test_data, test_targets) = pickle.load(open("dataset.pickle", "rb"))
 
-train_data, train_targets = np.array(train_data), np.array(train_targets)
+#train_data, train_targets = np.array(train_data), np.array(train_targets)
+
+train_data = np.array([pickle.load(open("feature.pickle1580140299.464146", "rb")), pickle.load(open("feature.pickle1580140299.464146", "rb"))])
+
+train_targets = np.array([pickle.load(open("vec.pickle1580140299.46336", "rb")), pickle.load(open("vec.pickle1580140299.46336", "rb"))])
+
+print(train_data.shape)
 
 def create_lstm_model(vocab_size, embedding_size=None, embedding_weights=None):
     message = Input(shape=40, dtype='int32', name='lstm_input')
@@ -33,8 +39,8 @@ def create_lstm_model(vocab_size, embedding_size=None, embedding_weights=None):
     return model
 
 lstm_model = create_lstm_model(40,)
-lstm_model.save("lstm_punctator")
+#lstm_model.save("lstm_punctator")
 lstm_model.summary()
 lstm_model.fit(train_data, train_targets, epochs=12, batch_size=1024, callbacks=[early])
-lstm_model.save_weights("lstm_punctator.h5")
+#lstm_model.save_weights("lstm_punctator.h5")
 lstm_model.evaluate(test_data, test_targets)
