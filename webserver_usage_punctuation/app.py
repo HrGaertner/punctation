@@ -21,9 +21,32 @@ def index_en():
 def cookies():
     return '<h1>This Website has just two cookies one which indentifys you so we can give the text which belongs to you send to you and one which handles that you do not get anyoed with cookie requests<h1><h2>Diese Webseite hat nur zwei Cookies eines um sie zu indentifizieren, damit ihre Daten zu ihnen zurückkommen und eines um dafür zu sorgen das sie nicht die ganze Zeit diese "Wir nutzen Cookies" pop-ups bekokmen. Wir bitten um ihr Verständnis<h2><a href=https://de.wikipedia.org/wiki/HTTP-Cookie>Hier eine genauere Erläuterung</a>'
 
+@app.route('/privacy_policy')
+def privacy_policy():
+    return "<h1>In work</h1>"
+
+@app.route('/datenschutzerklearung')
+def datenschutzerklaerung():
+    return "<h1>In Arbeit</h1>"
+
+@app.route('/impressum')
+def impressum():
+    return "<h1>In Arbeit</h1>"
+
+@app.route('/im_print')
+def im_print():
+    return "<h1>In work</h1>"
+
+@app.route('/ueber')
+def ueber():
+    return "<h1>Das ist ein Jugend-Forscht Projekt in dem wir hinter eine Spracherkennung eine automatische Zeichensetzung bauen wollen</h1>"
+
+@app.route('/about')
+def about():
+    return "<h1>This is a Jugend-Forscht project in which we aim to make an automatic punctation software behind a speech recognition</h1>"
+
 @socketio.on('get_audio')
 def audio(meta_data):
-    print("weird")
     audio = sr.AudioData(meta_data["wav blob"], meta_data["sampleRate"], 2)
     text = r.recognize_sphinx(audio, language=meta_data["language"])
     if text:

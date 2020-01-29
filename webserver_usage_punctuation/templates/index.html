@@ -11,7 +11,7 @@
   <body>
     <div id="mySidenav" class="sidenav">
       <a href="#">Über dieses Projekt</a>
-      <a href="#">Contact</a>
+      <a href="mailto:gaertnerjonathan@gmail.com">Kontakt</a>
       <a href="/impressum">Impressum</a>
     </div>
     <form><a href="/">Deutsch </a><a href="/en"> English</a></form>
@@ -22,7 +22,7 @@
     <p><strong>Gehen sie davon aus das die Ergebnisse falsch seien werden. Aber deshalb gibt es diese Website.</strong></p>
     <p>Zur Verbesserung dieses Programms</p>
     <p>Danke das sie dabei helfen</p>
-    <p><small>Sie verlieren ihre Rechte an allen Daten die sie hier eingeben. Aber seien sie versichert am Ende wird nur die Satzstruktur dauerhaft gespeichert</small></p>
+    <input type="checkbox" id="control_privacy">Ich aktzeptiere die <a href="/datenschutzerklaerung">Datenschutzerklärung</a></input>
     <div id="controls">
   	 <button id="recordButton">Aufnehmen</button>
   	 <button id="pauseButton" disabled>Pause</button>
@@ -33,11 +33,6 @@
     <p>Bitte haben sie Geduld die Verarbeitung dauert in der Regel ein bisschen</p>
     <textarea id="Interface_text" rows="4" cols="50" placeholder='Hier kann zu "punktierender" Text eingegeben werden ansonsten erscheinen hier die Ergebnisse'></textarea>
     <button id="enter_correct">Absenden</button>
-    <div id="cookieConsent">
-    <div id="closeCookieConsent">x</div>
-    This Webseite nutzt Cookies. Vielen Dank für ihr Verständnis <a href="#" target="_blank">Mehr Infos</a>. <a class="cookieConsentOK">Ok</a>
-    </div>
-
     <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
   	<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
