@@ -23,19 +23,19 @@ def cookies():
 
 @app.route('/privacy_policy')
 def privacy_policy():
-    return "<h1>In work</h1>"
+    return render_template("privacy_policy.html")
 
 @app.route('/datenschutzerklearung')
 def datenschutzerklaerung():
-    return "<h1>In Arbeit</h1>"
+    return render_template("datenschutz.html")
 
 @app.route('/impressum')
 def impressum():
-    return "<h1>In Arbeit</h1>"
+    return render_template("impressum.html")
 
 @app.route('/im_print')
 def im_print():
-    return "<h1>In work</h1>"
+    return render_template("im_print.html")
 
 @app.route('/ueber')
 def ueber():
