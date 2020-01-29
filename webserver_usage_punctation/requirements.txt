@@ -1,9 +1,9 @@
-pip3 install flask-socketio --user
-pip3 install flask --user
-pip3 install eventlet --user
-pip3 install SpeechRecognition --user
-pip3 install --upgrade pip setuptools wheel --user
-pip3 install --upgrade pocketsphinx --user
-pip3 install numpy --user
-pip3 install nltk --user
-pip3 install tensorflow --user
+pip3.6 install flask-socketio --user
+pip3.6 install flask --user
+pip3.6 install eventlet --user
+pip3.6 install --upgrade pocketsphinx --user
+pip3.6 install numpy --user
+pip3.6 install nltk --user
+pip3.6 install tensorflow --user
+#pip3 install SpeechRecognition --user
+#pip3 install --upgrade pip setuptools wheel --user

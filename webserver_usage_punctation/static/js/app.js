@@ -12,7 +12,7 @@ var audioContext //audio context to help us record
 var recordButton = document.getElementById("recordButton");
 var stopButton = document.getElementById("stopButton");
 var pauseButton = document.getElementById("pauseButton");
-var enter_correct = document.getElementById("enter_correct")
+var enter_correct = document.getElementById("enter_correct");
 
 //add events to those 2 buttons
 recordButton.addEventListener("click", startRecording);
@@ -145,7 +145,7 @@ function stopRecording() {
 
 function createDownloadLink(blob) {
     socket.emit("get_audio", {"wav blob" : blob, "sampleRate" : audioContext.sampleRate, "language":"de-DE"});
-    enter_correct.innerHTML="Correct";
+    enter_correct.innerHTML="Korrekt";
     correct = 1;
 }
 

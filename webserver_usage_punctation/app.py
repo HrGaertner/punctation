@@ -17,6 +17,10 @@ def index():
 def index_en():
     return render_template('index_en.html')
 
+@app.route('/cookies')
+def cookies():
+    return '<h1>This Website has just two cookies one which indentifys you so we can give the text which belongs to you send to you and one which handles that you do not get anyoed with cookie requests<h1><h2>Diese Webseite hat nur zwei Cookies eines um sie zu indentifizieren, damit ihre Daten zu ihnen zurückkommen und eines um dafür zu sorgen das sie nicht die ganze Zeit diese "Wir nutzen Cookies" pop-ups bekokmen. Wir bitten um ihr Verständnis<h2><a href=https://de.wikipedia.org/wiki/HTTP-Cookie>Hier eine genauere Erläuterung</a>'
+
 @socketio.on('get_audio')
 def audio(meta_data):
     print("weird")
