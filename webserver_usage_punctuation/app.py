@@ -25,7 +25,7 @@ def cookies():
 def privacy_policy():
     return render_template("privacy_policy.html")
 
-@app.route('/datenschutzerklearung')
+@app.route('/datenschutzerklaerung')
 def datenschutzerklaerung():
     return render_template("datenschutz.html")
 
