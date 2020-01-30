@@ -10,28 +10,30 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   </head>
   <body>
-    <div id="mySidenav" class="sidenav">
-      <a href="/about">About</a>
-      <a href="mailto:punctuation@web.de">Contact</a>
-      <a href="/im_print">Im print</a>
-    </div>
-    <form><a href="/">Deutsch </a><a href="/en"> English</a></form>
-    <h1>Automatic punctation demo</h1>
-    <p><small>Made by Antonios S. and Jonathan G.</a></small></p>
-    <p>Check out the <a href="https://github.com/HrGaertner/punctation/tree/master/webserver_usage_punctation" target="_blank">code on GitHub</a></p>
-    <h2>Please remember this is just for testing the results will not be right</h2><h2> you are here for correcting them</h2>
-    <p>Thanks to you</p>
-    <input type="checkbox" id="control_privacy">I accept the <a href="/privacy_policy">privacy policy</a></input>
-    <div id="controls">
-  	 <button id="recordButton">Record</button>
-  	 <button id="pauseButton" disabled>Pause</button>
-  	 <button id="stopButton" disabled>Stop</button>
-    </div>
-    <div id="formats">Format: start recording to see sample rate</div>
-  	<p><strong>Result or Text input:</strong></p>
-    <p>Please be a little bit patient it can take a few moments</p>
-    <textarea id="Interface_text" rows="4" cols="50" placeholder="You can enter text her for punctation. If you use the Speech Recognition the results will appear her"></textarea>
-    <button id="enter_correct">Enter</button>
+    <ul id="mySidenav" class="sidenav">
+      <li><a href="/about">About</a></li>
+      <li><a href="mailto:punctuation@web.de">Contact</a></li>
+      <li><a href="/im_print">Im print</a></li>
+    </ul>
+    <div class="content"><center>
+      <form><a href="/">Deutsch </a><a href="/en"> English</a></form>
+      <h1>Automatic punctation demo</h1>
+      <p><small>Made by Antonios S. and Jonathan G.</a></small></p>
+      <p>Check out the <a href="https://github.com/HrGaertner/punctation/tree/master/webserver_usage_punctation" target="_blank">code on GitHub</a></p>
+      <h2>Please remember this is just for testing the results will not be right</h2><h2> you are here for correcting them</h2>
+      <p>Thanks to you</p>
+      <input type="checkbox" id="control_privacy">I accept the <a href="/privacy_policy">privacy policy</a></input>
+      <div id="controls">
+       <button id="recordButton">Record</button>
+       <button id="pauseButton" disabled>Pause</button>
+       <button id="stopButton" disabled>Stop</button>
+      </div>
+      <div id="formats">Format: start recording to see sample rate</div>
+      <p><strong>Result or Text input:</strong></p>
+      <p>Please be a little bit patient it can take a few moments</p>
+      <textarea id="Interface_text" rows="4" cols="50" placeholder="You can enter text her for punctation. If you use the Speech Recognition the results will appear her"></textarea>
+      <button id="enter_correct">Enter</button>
+    </center></div>
     <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
   	<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
