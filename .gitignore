@@ -6,3 +6,5 @@
 /webserver_usage_punctuation/output/
 /webserver_usage_punctuation/output/
 /webserver_usage_punctuation/speech_recognition/
+/.idea
+/Models/dataset.pickle
