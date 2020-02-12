@@ -9,10 +9,10 @@ with open("feature.pickle", "rb") as f: #Loading prepocessed data
 with open("vec.pickle", "rb") as f:
     vectors = np.array(pickle.load(f))
 
-#train_data = features[:int(len(features)*0.9)] #Splitting data into teining and test dataset
-#test_data = features[int(len(features)*0.9)]
-#train_targets = vectors[:int(len(vectors)*0.9)]
-#test_targets = vectors[int(len(vectors)*0.9):]
+train_data = features[:int(len(features)*0.9)] #Splitting data into teining and test dataset
+test_data = features[int(len(features)*0.9)]
+train_targets = vectors[:int(len(vectors)*0.9)]
+test_targets = vectors[int(len(vectors)*0.9):]
 
 model = models.Sequential()
 model.add(layers.Dense(32, activation="relu", input_shape=(40,)))
