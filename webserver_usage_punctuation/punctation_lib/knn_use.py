@@ -3,12 +3,12 @@ import pickle
 import nltk
 import numpy as np
 
-model = load_model("punctation_lib/lstm_punctator")
-model.load_weights("punctation_lib/lstm_punctator.h5")
+model = load_model("./lstm_sigmoid_punctator")
+model.load_weights("./lstm_sigmoid_punctator.h5")
 
 
 def tag(tokenized):#tagging and converting to digits
-    with open('ClassifierBasedGermanTagger/germanTagger.pickle', 'rb') as f: #Tagging
+    with open('../ClassifierBasedGermanTagger/germanTagger.pickle', 'rb') as f: #Tagging
         tagger = pickle.load(f)
     sen = tagger.tag(tokenized)
     tag_set = ['PPER', 'APPRART', 'PWS', 'NE', 'PRELS', 'KOKOM', 'PIAT', 'CARD', 'VMINF', 'PIS', 'XY', 'PTKANT',
@@ -23,12 +23,12 @@ def tag(tokenized):#tagging and converting to digits
     return tag_sen
 
 def punctate(data):
-    model = load_model("punctation_lib/lstm_punctator")
-    model.load_weights("punctation_lib/lstm_punctator.h5")
+    #model = load_model("punctation_lib/lstm_sigmoid_punctator")
+    #model.load_weights("punctation_lib/lstm_sigmoid_punctator.h5")
+
     sen = nltk.word_tokenize(data, "german")
     data = tag(sen)
     punctation = 0
-    nulls = 0
     nulls = 0
     while len(data) % 40 != 0:  # You can divide through 40 so everything goes through the ANN
         data.append(54)
@@ -48,14 +48,17 @@ def punctate(data):
         vec_list = vec.tolist()# Convert to list for .index()
         vec_list[0] = 0.0# A sentence needs at least to words
         vec_list[1] = 0.0
-        maxid_relativ = vec_list.index(max(vec_list))
-        maxid = maxid_relativ + i - 41
-        try:#If were are at the and you can not add a point where is no word
-            sen[maxid] = sen[maxid] + "."# Append the point
-            sen[maxid+1] = sen[maxid+1][0].upper() + sen[maxid+1][1:]
-        except:
-            sen[-1] = sen[-1] + "."
-        punctation = 40 - maxid_relativ
+        print(vec)
+        for iter in range(0, len(vec_list)):
+            if vec[iter] >= 0.47:
+                print(True)
+                try:
+                    sen[iter + i - 40] = sen[iter + i - 40] + "."
+                    sen[iter + i - 40 + 1] = sen[iter + i - 40 + 1][0].upper() + sen[iter + i - 40 + 1][1:]
+                    punctation = 40 - iter
+                except:
+                    sen[-1] = sen[-1] + "."
+                    punctation = 40
         i += 40 - punctation # NULL
     sen = ' '.join(sen)
     return sen

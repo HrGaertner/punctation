@@ -8,3 +8,5 @@
 /webserver_usage_punctuation/speech_recognition/
 /.idea
 /Models/dataset.pickle
+/webserver_usage_punctuation/punctation_lib/lstm_sigmoid_punctator.h5
+/webserver_usage_punctuation/punctation_lib/lstm_sigmoid_punctator
