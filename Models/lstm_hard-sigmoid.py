@@ -13,14 +13,6 @@ early = tensorflow.keras.callbacks.EarlyStopping(monitor='loss',
 (train_data, train_targets), (test_data, test_targets) = pickle.load(open("dataset.pickle", "rb"))
 
 train_data, train_targets = np.array(train_data), np.array(train_targets)
-"""
-train_data = pickle.load(open("feature.pickle", "rb")).tolist()
-train_data.append(train_data[0])
-train_targets = pickle.load(open("vec.pickle", "rb")).tolist()
-train_targets.append(train_targets[0])
-
-train_data = np.array(train_data)
-train_targets = np.array(train_targets)"""
 
 
 def create_lstm_model(vocab_size, embedding_size=None, embedding_weights=None):
