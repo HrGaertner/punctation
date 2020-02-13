@@ -31,6 +31,34 @@ var socket = io();
 socket.on('connect', function() {
 });
 
+function downsampleBuffer(buffer, rate) {
+                if (rate == sampleRate) {
+                    return buffer;
+                }
+                if (rate > sampleRate) {
+                    throw "downsampling rate show be smaller than original sample rate";
+                }
+                var sampleRateRatio = sampleRate / rate;
+                var newLength = Math.round(buffer.length / sampleRateRatio);
+                var result = new Float32Array(newLength);
+                var offsetResult = 0;
+                var offsetBuffer = 0;
+                while (offsetResult < result.length) {
+                    var nextOffsetBuffer = Math.round((offsetResult + 1) * sampleRateRatio);
+                     // Use average value of skipped samples
+                    var accum = 0, count = 0;
+                    for (var i = offsetBuffer; i < nextOffsetBuffer && i < buffer.length; i++) {
+                        accum += buffer[i];
+                        count++;
+                    }
+                    result[offsetResult] = accum / count;
+                    // Or you can simply get rid of the skipped samples:
+                    // result[offsetResult] = buffer[nextOffsetBuffer];
+                    offsetResult++;
+                    offsetBuffer = nextOffsetBuffer;
+                }
+                return result;
+}
 
 function textarea_action() {
     if(control_privacy.checked){
@@ -149,7 +177,8 @@ function stopRecording() {
 }
 
 function createDownloadLink(blob) {
-    socket.emit("get_audio", {"wav blob" : blob, "sampleRate" : audioContext.sampleRate, "language":"de-DE"});
+    var wav_blob = downsampleBuffer(blob, 16000);
+    socket.emit("get_audio", {"wav blob" : wav_blob, "sampleRate" : audioContext.sampleRate, "language":"de-DE"});
     enter_correct.innerHTML="Correct";
     correct = 1;
 }
