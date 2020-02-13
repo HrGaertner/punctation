@@ -6,7 +6,7 @@ def tag(liste):
         tagger = pickle.load(f)
         return tagger.tag(liste)
 
-with  open("tokenized.pickle", "rb") as f:
+with  open("tagged.pickle", "rb") as f:
     tagged = pickle.load(f)
 
 print("Loaded")
@@ -23,7 +23,7 @@ f_vector = []
 
 for i in range(0, len(tagged)):
     if tagged[i] == "$.":
-        event = True
+        vec[-1] = 1
         punctation = []
         punc_vec = []
     elif tagged[i] == "$,":
@@ -31,13 +31,8 @@ for i in range(0, len(tagged)):
     else:
         feature.append(tagged[i])
         punctation.append(tagged[i])
-        if event:
-            vec.append(1)
-            punc_vec.append(1)
-            event = False
-        else:
-            vec.append(0)
-            punc_vec.append(0)
+        vec.append(0)
+        punc_vec.append(0)
         if len(vec) == 40:
             f_vector.append(vec)
             f_feature.append(feature)

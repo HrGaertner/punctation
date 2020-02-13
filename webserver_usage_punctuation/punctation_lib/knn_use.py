@@ -33,11 +33,8 @@ def punctate(data):
     while len(data) % 40 != 0:  # You can divide through 40 so everything goes through the ANN
         data.append(54)
         nulls += 1
-    i = 0
+    i = 40
     while i <= len(data):
-        if i == 0:
-            i += 40
-            continue
         data = data[:len(data)-nulls]
         nulls = 0
         while len(data) % 40 != 0:  # You can divide through 40 so everything goes through the ANN
@@ -46,10 +43,10 @@ def punctate(data):
         model_prepared = np.array([data[i - 40:i], data[i - 40:i]])
         vec = model.predict(model_prepared)[0]# Get the answer of the ANN
         vec_list = vec.tolist()# Convert to list for .index()
-        vec_list[0] = 0.0# A sentence needs at least to words
-        vec_list[1] = 0.0
+        vec[0] = 0.0# A sentence needs at least to words
+        vec[1] = 0.0
         print(vec)
-        for iter in range(0, len(vec_list)):
+        for iter in range(0, len(vec)):
             if vec[iter] >= 0.47:
                 print(True)
                 try:
