@@ -39,23 +39,17 @@ def punctate(data):
         vec = model.predict(model_prepared)[0]# Get the answer of the ANN
         vec[0] = 0.0# A sentence needs at least to words
         vec[1] = 0.0
-        print(vec)
-        #data = data[:len(data)-nulls]
-        #data = data[:len(vec)-nulls]
         nulls = 0
         for iter in range(0, len(vec)):
             if vec[iter] >= 0.5 and data[i-40 + iter] != 54:
                 try:
-                    print(i, iter)
                     sen[i - 40 + iter] = sen[i - 40 + iter] + "."
                     sen[i - 40 + 1 + iter] = sen[i - 40 + 1 + iter][0].upper() + sen[i - 40 + 1 + iter][1:]
                     punctation = 40 - iter
                 except:
-                    print(True)
                     sen[-1] = sen[-1] + "."
                     punctation = 0
         i += 40 - punctation # NULL
-        print(i, punctation, i % 40)
     if sen[-1][-1] != ".":
         sen[-1] = sen[-1] + "."
     sen = ' '.join(sen)
