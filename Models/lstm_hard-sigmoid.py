@@ -1,4 +1,3 @@
-from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np
 import tensorflow.keras.callbacks
 from tensorflow.keras.layers import Input, Dense, LSTM, Embedding
