@@ -1,9 +1,8 @@
-/feature_extraction/dataset.pickle
+/Models/dataset.pickle
 /feature_extraction/tagged.pickle
 /webserver_usage_punctuation/punctation_lib/lstm_punctator
 /webserver_usage_punctuation/punctation_lib/lstm_punctator.h5
 /webserver_usage_punctuation/ClassifierBasedGermanTagger/
-/webserver_usage_punctuation/output/
 /webserver_usage_punctuation/output/
 /webserver_usage_punctuation/speech_recognition/
 /.idea

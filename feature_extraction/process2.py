@@ -1,5 +1,6 @@
 import pickle
 import nltk
+import numpy as np
 
 def tag(liste):
     with open('ClassifierBasedGermanTagger/germanTagger.pickle', 'rb') as f:   
@@ -44,21 +45,35 @@ for i in range(0, len(tagged)):
         punctation = []
         punc_vec = []
 
-"""while len(tagged) < 40:
-    tagged.append("NULL")
-    f_vector.append(vec)
-    f_feature.append(sentence)"""
-    
-if len(feature) != 40:
-    vec.append(1)
-    feature.append("NULL")
-    for i in range(len(vec), 40):
-        feature.append("NULL")
-        vec.append(0)
-    f_feature.append(feature)
-    f_vector.append(vec)
+vec[-1] = 1
 
-with open('vec.pickle', 'wb') as f_vec:
-    pickle.dump(f_vector, f_vec)
-with open("feature.pickle", "wb") as f:
-    pickle.dump(f_feature, f)
+for i in range(len(vec), 40):
+    feature.append("NULL")
+    vec.append(0)
+f_feature.append(feature)
+f_vector.append(vec)
+
+tag_set = ['PPER', 'APPRART', 'PWS', 'NE', 'PRELS', 'KOKOM', 'PIAT', 'CARD', 'VMINF', 'PIS', 'XY', 'PTKANT', 'PTKNEG', 'APPR', 'ADV', 'KON', 'VMFIN', 'APZR', 'ADJD', 'PDS', 'VVFIN', 'PRF', 'VAINF', 'ADJA', '$.', 'TRUNC', 'VVPP', 'PDAT', 'ART', 'NN', 'PPOSAT', 'VVINF', '$(', 'VAPP', '$,', 'PWAV', 'KOUS', 'KOUI', 'FM', 'VVIZU', 'VVIMP', 'VAFIN', 'PTKZU', 'PTKVZ', 'PROAV', 'VAIMP', 'NNE', 'PWAT', 'APPO', 'ITJ', 'PRELAT', 'VMPP', 'PPOSS', 'PTKA', 'NULL']
+
+i = 0
+tags = []
+for features_sen in f_feature:
+    tag_sen = []
+    for tag in features_sen:
+        if tag in tag_set:
+            tag_sen.append(tag_set.index(tag))
+        else:
+            print(tag)
+            raise(Exception)
+    tags.append(tag_sen)
+    print(i)
+    i += 1
+
+train_features = np.array(tags[:int(0.9*len(tags))])
+test_features = np.array(tags[int(0.9*len(tags)):])
+
+train_targets = np.array(f_vector[:int(0.9*len(f_vector))])
+test_targets = np.array(f_vector[int(0.9*len(f_vector)):])
+
+with open("../Models/dataset.pickle", "wb") as f:
+    pickle.dump(((train_features, train_targets), (test_features, test_targets)), f)
