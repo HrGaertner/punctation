@@ -75,5 +75,5 @@ test_features = np.array(tags[int(0.9*len(tags)):])
 train_targets = np.array(f_vector[:int(0.9*len(f_vector))])
 test_targets = np.array(f_vector[int(0.9*len(f_vector)):])
 
-with open("../Models/dataset.pickle", "wb") as f:
+with open("../Models/dataset_bad.pickle", "wb") as f:
     pickle.dump(((train_features, train_targets), (test_features, test_targets)), f)

@@ -3,12 +3,12 @@ import pickle
 import nltk
 import numpy as np
 
-model = load_model("punctation_lib/lstm_sigmoid_punctator")
-model.load_weights("punctation_lib/lstm_sigmoid_punctator.h5")
+model = load_model("./punctator")
+model.load_weights("./punctator.h5")
 
 
 def tag(tokenized):#tagging and converting to digits
-    with open('./ClassifierBasedGermanTagger/germanTagger.pickle', 'rb') as f: #Tagging
+    with open('../ClassifierBasedGermanTagger/germanTagger.pickle', 'rb') as f: #Tagging
         tagger = pickle.load(f)
     sen = tagger.tag(tokenized)
     tag_set = ['PPER', 'APPRART', 'PWS', 'NE', 'PRELS', 'KOKOM', 'PIAT', 'CARD', 'VMINF', 'PIS', 'XY', 'PTKANT',
@@ -40,18 +40,24 @@ def punctate(data):
         vec[0] = 0.0# A sentence needs at least to words
         vec[1] = 0.0
         print(vec)
-        data = data[:len(data)-nulls]
-        vec = vec[:len(vec)-nulls]
+        #data = data[:len(data)-nulls]
+        #data = data[:len(vec)-nulls]
         nulls = 0
         for iter in range(0, len(vec)):
-            if vec[iter] >= 0.47:
-                sen[i - 40 + iter] = sen[i - 40 + iter] + "."
-                sen[i - 40 + 1 + iter] = sen[i - 40 + 1 + iter][0].upper() + sen[i - 40 + 1 + iter][1:]
-                punctation = 40 - iter
-                """except:
+            if vec[iter] >= 0.5 and data[i-40 + iter] != 54:
+                try:
+                    print(i, iter)
+                    sen[i - 40 + iter] = sen[i - 40 + iter] + "."
+                    sen[i - 40 + 1 + iter] = sen[i - 40 + 1 + iter][0].upper() + sen[i - 40 + 1 + iter][1:]
+                    punctation = 40 - iter
+                except:
+                    print(True)
                     sen[-1] = sen[-1] + "."
-                    punctation = 40"""
+                    punctation = 0
         i += 40 - punctation # NULL
+        print(i, punctation, i % 40)
+    if sen[-1][-1] != ".":
+        sen[-1] = sen[-1] + "."
     sen = ' '.join(sen)
     return sen
 

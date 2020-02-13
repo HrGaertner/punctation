@@ -1,11 +1,9 @@
-/Models/dataset.pickle
+/Models/dataset_bad.pickle
 /feature_extraction/tagged.pickle
-/webserver_usage_punctuation/punctation_lib/lstm_punctator
-/webserver_usage_punctuation/punctation_lib/lstm_punctator.h5
 /webserver_usage_punctuation/ClassifierBasedGermanTagger/
 /webserver_usage_punctuation/output/
 /webserver_usage_punctuation/speech_recognition/
 /.idea
-/Models/dataset.pickle
-/webserver_usage_punctuation/punctation_lib/lstm_sigmoid_punctator.h5
-/webserver_usage_punctuation/punctation_lib/lstm_sigmoid_punctator
+/Models/dataset_bad.pickle
+/webserver_usage_punctuation/punctation_lib/punctator
+/webserver_usage_punctuation/punctation_lib/punctator.h5
