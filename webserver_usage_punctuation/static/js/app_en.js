@@ -12,9 +12,9 @@ var audioContext //audio context to help us record
 var recordButton = document.getElementById("recordButton");
 var stopButton = document.getElementById("stopButton");
 var pauseButton = document.getElementById("pauseButton");
-var enter_correct = document.getElementById("enter_correct")
+var enter_correct = document.getElementById("enter_correct");
+var control_privacy = document.getElementById("control_privacy");
 
-//add events to those 2 buttons
 recordButton.addEventListener("click", startRecording);
 stopButton.addEventListener("click", stopRecording);
 pauseButton.addEventListener("click", pauseRecording);
@@ -83,9 +83,6 @@ function startRecording() {
 
             */
             audioContext = new AudioContext();
-
-            //update the format
-            document.getElementById("formats").innerHTML="Format: 1 channel pcm @ "+audioContext.sampleRate/1000+"kHz"
 
             /*  assign to gumStream for later use  */
             gumStream = stream;

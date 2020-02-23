@@ -13,6 +13,7 @@ var recordButton = document.getElementById("recordButton");
 var stopButton = document.getElementById("stopButton");
 var pauseButton = document.getElementById("pauseButton");
 var enter_correct = document.getElementById("enter_correct");
+var control_privacy = document.getElementById("control_privacy");
 
 //add events to those 2 buttons
 recordButton.addEventListener("click", startRecording);

@@ -13,9 +13,13 @@ r = sr.Recognizer()
 def index():
     return render_template('index.html')
 
-@app.route('/en')
+@app.route("/en")
 def index_en():
     return render_template('index_en.html')
+
+@app.route('/text')
+def text():
+    return render_template('text.html')
 
 @app.route('/cookies')
 def cookies():

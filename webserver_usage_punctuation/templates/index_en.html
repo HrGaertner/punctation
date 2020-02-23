@@ -4,52 +4,42 @@
     <meta charset="UTF-8">
     <title>Website for using automatic punctator and new data generating</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Latest compiled and minified Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">--!>
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   </head>
   <body>
     <ul id="mySidenav" class="sidenav">
-      <li><a href="/about">About</a></li>
+      <!--<li><a href="/about">About</a></li>--!>
       <li><a href="mailto:punctuation@web.de">Contact</a></li>
       <li><a href="/im_print">Im print</a></li>
+      <!--<li><a href="/text">Plain Text input</a></li>--!>
     </ul>
-    <div class="content"><center>
-      <form><a href="/">Deutsch </a><a href="/en"> English</a></form>
-      <h1>Automatic punctation - demo</h1>
-      <p><small>Made by Antonios S. and Jonathan G.</a></small></p>
-      <p>This is a project for the <a href="https://www.jugend-forscht.de/">"Jugend-Forscht"</a> competition</p>
-      <p>Check out the <a href="https://github.com/HrGaertner/punctation/tree/master/webserver_usage_punctuation" target="_blank">code on GitHub</a></p>
-      <h2>Please remember: This webpage serves only for testing - we recommend to use the results with care!</h2>
-      <p>Your efforts help us to improve our algorithms - Thank you!</p>
-      <input type="checkbox" id="control_privacy">I accept the <a href="/privacy_policy">privacy policy</a></input>
-      <div id="controls">
+    <div class="content" style="text-align: justify">
+      <form><a href="/"> <img height="50px" width="70px" src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg"></a><a href="/en"><img id="lang_pic" width="70px" height="50px" src="https://cdn.pixabay.com/photo/2013/07/12/13/27/england-147080_960_720.png"></a></form>
+      <h1>Automatische Zeichensetzung</h1>
+      <p>Dies ist ein Projekt für den <a href="https://www.jugend-forscht.de/">Jugend-Forscht Wettbewerb 2020</a> von Antonios S. and Jonathan G.</p>
+            <div id="controls">
        <button id="recordButton">Record</button>
        <button id="pauseButton" disabled>Pause</button>
        <button id="stopButton" disabled>Stop</button>
       </div>
-      <div id="formats">Format: start recording to see sample rate</div>
-      <p><strong>Result or Text input:</strong></p>
-      <p>this might take a moment - please have a little patience</p>
-      <textarea id="Interface_text" rows="4" cols="50" placeholder="You can enter text her for punctation. If you use the Speech Recognition the results will appear here"></textarea>
-      <button id="enter_correct">Enter</button>
-    </center></div>
+      <br>
+      <input type="checkbox" id="control_privacy">I accept the <a href="/privacy_policy">Privacy Policy</a>. Sorry for this</input>
+      <p style="padding: 10px 20px; background-color:#f0f0f0; color: #666">We present a tool for automatic punctuation. Speak (or write) some sentences into the Mircophon (the textarea).
+       with this you are training our tool. As more user our tool gets as better the results get. The ANN (artifical neural network) will set points and kommas automatical after the end of this project. The data which was inputed will be processed and saved as grammatical patterns during this process the meaning gets lost.</p>
+      <p>Ausgabe</p>
+      <textarea id="Interface_text" rows="4" cols="50" placeholder='You can enter text to punctate or the results will appear here'></textarea>
+      <button id="enter_correct">Absenden</button>
+      <p>Look at the <a href="https://github.com/HrGaertner/punctation/tree/master/webserver_usage_punctuation" target="_blank"> code on GitHub</a></p>
+    </div>
     <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
   	<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
     <script type="text/javascript" id="cookieinfo"
 	src="//cookieinfoscript.com/js/cookieinfo.min.js"
-	data-message="This Website uses cookies. We hope for your understanding"data-cookie="CookieInfoScript_en" data-text-align="left" data-close-text="OK" data-linkmsg="Further Informations" data-moreinfo="/cookies">
+	data-message="Sorry but we also have to use Cookies"data-cookie="CookieInfoScript" data-text-align="left" data-close-text="OK" data-linkmsg="More Infos" data-moreinfo="/cookies">
     </script>
     <script src="{{ url_for('static', filename='js/app_en.js') }}"></script>
   </body>
-
-
-
-
-
-
-
-#ä
 </html>
