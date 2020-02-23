@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>Website zur Benutzung der "Punktierung" und der Generierung neuer Trainingsdaten</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">--!>
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   </head>
   <body>
@@ -12,34 +13,32 @@
       <li><a href="#">Über dieses Projekt</a></li>
       <li><a href="mailto:punctuation@web.de">Kontakt</a></li>
       <li><a href="/impressum">Impressum</a></li>
+      <li><a href="/text">Texteingabe</a></li>
     </ul>
-    <div class="content"><center>
-      <form><a href="/">Deutsch </a><a href="/en"> English</a></form>
-      <h1>Automatische Zeichensetzung - Demo</h1>
-      <p><small>Made by Antonios S. and Jonathan G.</a></small></p>
-      <p>Dies ist ein Projekt für den <a href="https://www.jugend-forscht.de/">Jugend-Forscht Wettbewerb</a></p>
-      <p>Sieh dir den <a href="https://github.com/HrGaertner/punctation/tree/master/webserver_usage_punctuation" target="_blank">Code auf GitHub an</a></p>
-      <h1>Denken Sie daran: Diese Website dient Testzwecken und ist nicht für den Endnutzer gedacht!</h1>
-      <p><strong>Die Ergebnisse sind ohne Gewähr. Mit Hilfe dieser Seite möchten wir unsere Algorithmen verbessern.</strong></p>
-      <p>Vielen Dank für Ihre Unterstützung</p>
-      <input type="checkbox" id="control_privacy">Ich aktzeptiere die <a href="/datenschutzerklaerung">Datenschutzerklärung</a></input>
-      <div id="controls">
+    <div class="content" style="text-align: justify">
+      <form><a href="/"> <img height="50px" width="70px" src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg"></a><a href="/en"><img width="70px" height="50px" src="https://cdn.pixabay.com/photo/2013/07/12/13/27/england-147080_960_720.png"></a></form>
+      <h1>Automatische Zeichensetzung</h1>
+      <p>Dies ist ein Projekt für den <a href="https://www.jugend-forscht.de/">Jugend-Forscht Wettbewerb 2020</a> von Antonios S. and Jonathan G.</p>
+            <div id="controls">
        <button id="recordButton">Aufnehmen</button>
        <button id="pauseButton" disabled>Pause</button>
        <button id="stopButton" disabled>Stopp</button>
       </div>
-      <div id="formats">Format: Fangen Sie an aufzunehmen um die "sample rate" zu sehen</div>
-      <p><strong>Ergebnis oder Text Eingabe</strong></p>
-      <p>BDie Verarbeitung kann mehrere Minuten dauern - haben Sie noch etwas Geduld.</p>
+      <br>
+      <input type="checkbox" id="control_privacy">Ich aktzeptiere die <a href="/datenschutzerklaerung">Datenschutzerklärung</a>. Das muss leider sein</input>
+      <p style="padding: 10px 20px; background-color:#f0f0f0; color: #666">Hier präsentieren wir unser Tool zur automatischen Zeichensetzung. Sprechen (oder schreiben) Sie ein paar Sätze in das Mikrofon (Textfeld).
+       Sie trainieren so unser künstliches neuronales Netz. Je mehr Interessierte unser Tool benutzen desto zuverlässiger werden die Ergebnisse werden. Das KNN (künstliches neuronales Netz) wird am Ende automatisch Punkte und Kommata setzen. Die eingegebenen Daten werden nach Verarbeitung nur als grammatikalische Muster gespeichert und die Bedeutung geht verloren. </p>
+      <p>Ausgabe</p>
       <textarea id="Interface_text" rows="4" cols="50" placeholder='Hier kann zu "punktierender" Text eingegeben werden ansonsten erscheinen hier die Ergebnisse'></textarea>
       <button id="enter_correct">Absenden</button>
-    </center></div>
+      <p>Sieh dir den <a href="https://github.com/HrGaertner/punctation/tree/master/webserver_usage_punctuation" target="_blank">Code auf GitHub an</a></p>
+    </div>
     <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
   	<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
     <script type="text/javascript" id="cookieinfo"
 	src="//cookieinfoscript.com/js/cookieinfo.min.js"
-	data-message="Diese Webseite nutzt Cookies. Wir bitten um ihr Verständnis"data-cookie="CookieInfoScript" data-text-align="left" data-close-text="OK" data-linkmsg="Mehr Infos" data-moreinfo="/cookies">
+	data-message="Leider nutzen auch wir Cookies um ihnen ihren Text zu kommen zu lassen"data-cookie="CookieInfoScript" data-text-align="left" data-close-text="OK" data-linkmsg="Mehr Infos" data-moreinfo="/cookies">
     </script>
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
   </body>

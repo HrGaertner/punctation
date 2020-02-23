@@ -1,8 +1,10 @@
-pip install flask-socketio --user
-pip install flask --user
-pip install eventlet --user
-pip install numpy --user
-pip install nltk --user
-pip install tensorflow --user
-pip install SpeechRecognition --user
-pip install --upgrade pip setuptools wheel --user
+flask-socketio
+flask
+eventlet
+numpy
+nltk
+tensorflow
+SpeechRecognition
+pip
+setuptools
+wheel

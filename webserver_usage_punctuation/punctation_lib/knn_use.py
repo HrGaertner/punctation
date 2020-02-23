@@ -3,12 +3,12 @@ import pickle
 import nltk
 import numpy as np
 
-model = load_model("./punctator")
-model.load_weights("./punctator.h5")
+model = load_model("punctation_lib/punctator")
+model.load_weights("punctation_lib/punctator.h5")
 
 
 def tag(tokenized):#tagging and converting to digits
-    with open('../ClassifierBasedGermanTagger/germanTagger.pickle', 'rb') as f: #Tagging
+    with open('./ClassifierBasedGermanTagger/germanTagger.pickle', 'rb') as f: #Tagging
         tagger = pickle.load(f)
     sen = tagger.tag(tokenized)
     tag_set = ['PPER', 'APPRART', 'PWS', 'NE', 'PRELS', 'KOKOM', 'PIAT', 'CARD', 'VMINF', 'PIS', 'XY', 'PTKANT',
