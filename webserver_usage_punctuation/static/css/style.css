@@ -29,10 +29,11 @@ h1 {
 }
 
 h2 {
+	text-decoration-thickness: 3px;
+	text-underline-offset: 6px;
+	font-size: 180%;
 	font-weight: bold;
-	color: #005A9C;
-	font-size: 140%;
-	text-transform: uppercase;
+	font-family: 'Oswald', sans-serif;
 }
 
 red {
