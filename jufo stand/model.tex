@@ -6,7 +6,7 @@
     \usepackage[T1]{fontenc}
     % Nicer default font (+ math font) than Computer Modern for most use cases
     \usepackage{mathpazo}
-
+	\usepackage{listingsutf8}
     % Basic figure setup, for now with no caption control since it's done
     % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
     \usepackage{graphicx}
@@ -88,7 +88,7 @@
     % extracted from the output of `pandoc -s`
     \providecommand{\tightlist}{%
       \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines}
     % Add ',fontsize=\small' for more characters per line
     \newenvironment{Shaded}{}{}
     \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
@@ -327,16 +327,18 @@ Machen wir uns mal einen Beispiel Satz:
 Diesen Tokenisieren wir dann, dass heißt wir zerlegen ihn in Wortstücke
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{satz} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Das ist ein Beispiel Satz hier kommt noch ein Satz schauen wir mal ob die Punkte erkannt werden}\PY{l+s+s2}{\PYZdq{}}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{satz} \PY{o}{=}
+ \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Das ist ein Beispiel Satz hier kommt noch ein Satz schauen wir mal,ob die}\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} 
+\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Punkte erkannt werden}\PY{l+s+s2}{\PYZdq{}}
          
          \PY{n}{satz} \PY{o}{=} \PY{n}{nltk}\PY{o}{.}\PY{n}{word\PYZus{}tokenize}\PY{p}{(}\PY{n}{satz}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{german}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{So sieht der Satz tokenisiert aus: }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{satz}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
+    \begin{lstlisting}[breaklines]
 So sieht der Satz tokenisiert aus: ['Das', 'ist', 'ein', 'Beispiel', 'Satz', 'hier', 'kommt', 'noch', 'ein', 'Satz', 'schauen', 'wir', 'mal', 'ob', 'die', 'Punkte', 'erkannt', 'werden']
 
-    \end{Verbatim}
+    \end{lstlisting}
 
     Jetzt kommt ein sehr wichtiger Punkt wir wandeln den Satz erst in seine
 Satzbausteine (Adjektiv, Verb, \ldots{}) um. Das nennt man taggen. Dann
@@ -345,16 +347,19 @@ kann
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}29}]:} \PY{n}{ausgabe} \PY{o}{=} \PY{n}{satz}\PY{c+c1}{\PYZsh{}Für später um die Punkte einzusetzen}
-         \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ClassifierBasedGermanTagger/germanTagger.pickle}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:} \PY{c+c1}{\PYZsh{}Das Modul zum \PYZdq{}taggen\PYZdq{}}
+         \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ClassifierBasedGermanTagger/germanTagger.pickle}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+         \PY{c+c1}{\PYZsh{}Das Modul zum \PYZdq{}taggen\PYZdq{}}
                  \PY{n}{tagger} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
          \PY{n}{satz} \PY{o}{=} \PY{n}{tagger}\PY{o}{.}\PY{n}{tag}\PY{p}{(}\PY{n}{satz}\PY{p}{)}
          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Die Satzbausteine: }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{satz}\PY{p}{)}\PY{p}{)}
-         \PY{n}{tag\PYZus{}set} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PPER}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{APPRART}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PWS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NE}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PRELS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{KOKOM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PIAT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CARD}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VMINF}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PIS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{XY}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PTKANT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
-                    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PTKNEG}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{APPR}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ADV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{KON}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VMFIN}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{APZR}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ADJD}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PDS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VVFIN}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PRF}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VAINF}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ADJA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
-                    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TRUNC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VVPP}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PDAT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ART}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NN}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PPOSAT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VVINF}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}(}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VAPP}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{},}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PWAV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{KOUS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{KOUI}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
-                    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VVIZU}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VVIMP}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VAFIN}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PTKZU}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PTKVZ}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PROAV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VAIMP}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NNE}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PWAT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{APPO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ITJ}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
-                    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PRELAT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VMPP}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PPOSS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PTKA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NULL}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-         \PY{c+c1}{\PYZsh{}Das sind alle Textbausteine die Abkürzungen findet man auf der Website der Uni Stuttgart}
+         \PY{n}{tag\PYZus{}set} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PPER}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{APPRART}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PWS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NE}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PRELS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{KOKOM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PIAT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CARD}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+         	\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VMINF}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PIS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{XY}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PTKANT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PTKNEG}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{APPR}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ADV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{KON}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VMFIN}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+         	\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{APZR}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ADJD}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PDS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VVFIN}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PRF}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VAINF}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ADJA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TRUNC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VVPP}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+         	\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PDAT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ART}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NN}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PPOSAT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VVINF}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}(}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VAPP}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{},}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PWAV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+         	\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{KOUS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{KOUI}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VVIZU}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VVIMP}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VAFIN}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PTKZU}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PTKVZ}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+         	\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PROAV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VAIMP}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NNE}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PWAT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{APPO}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ITJ}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+            	\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PRELAT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VMPP}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PPOSS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PTKA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NULL}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\PY{c+c1}{\PYZsh{}Das sind alle Textbausteine die Abkürzungen findet man auf der Website der Uni Stuttgart}
          \PY{n}{tag\PYZus{}sen} \PY{o}{=} \PY{p}{[}\PY{p}{]}
          \PY{k}{for} \PY{n}{sen\PYZus{}tag} \PY{o+ow}{in} \PY{n}{satz}\PY{p}{:}
              \PY{k}{if} \PY{n}{sen\PYZus{}tag}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o+ow}{in} \PY{n}{tag\PYZus{}set}\PY{p}{:}
@@ -363,12 +368,12 @@ kann
          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Die resultierenden Nummern: }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{tag\PYZus{}sen}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
+    \begin{lstlisting}[breaklines]
 Die Satzbausteine: [('Das', 'ART'), ('ist', 'VAFIN'), ('ein', 'ART'), ('Beispiel', 'NN'), ('Satz', 'NN'), ('hier', 'ADV'), ('kommt', 'VVFIN'), ('noch', 'ADV'), ('ein', 'ART'), ('Satz', 'NN'), ('schauen', 'VVINF'), ('wir', 'PPER'), ('mal', 'ADV'), ('ob', 'KOUS'), ('die', 'ART'), ('Punkte', 'NN'), ('erkannt', 'VVPP'), ('werden', 'VAINF')]
 
 Die resultierenden Nummern: [28, 41, 28, 29, 29, 14, 20, 14, 28, 29, 31, 0, 14, 36, 28, 29, 26, 22]
 
-    \end{Verbatim}
+    \end{lstlisting}
 
     Da unser Satz weniger als 40 Wörter hat müssen wir diesen array nur noch
 so ergänzen das er 40 Elemente hat:(Wer wissen will wie es mit mehr als
@@ -382,13 +387,10 @@ so ergänzen das er 40 Elemente hat:(Wer wissen will wie es mit mehr als
          \PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Der ganze Array: }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{tag\PYZus{}sen}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-Länge des Arrays: 40
+	
+Lange des Arrays: 40
 
 Der ganze Array: [28, 41, 28, 29, 29, 14, 20, 14, 28, 29, 31, 0, 14, 36, 28, 29, 26, 22, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54]
-
-    \end{Verbatim}
 
     Das können wir jetzt einfach in unser KNN eingeben da nimmt uns
 tensorflow die ganze Arbeit ab. Wir müssen nur den Satz (tag\_sen)
@@ -402,7 +404,7 @@ Plakat
          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Die Ausgabe des KNN: }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{vec}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
+    \begin{lstlisting}[breaklines]
 Die Ausgabe des KNN: [0.15349647 0.19199911 0.23071742 0.18247968 0.18456912 0.8439578
  0.1459465  0.10394245 0.10377932 0.12534562 0.757808   0.1857554
  0.26473033 0.3548991  0.25904894 0.35849626 0.40727315 0.4375044
@@ -411,7 +413,7 @@ Die Ausgabe des KNN: [0.15349647 0.19199911 0.23071742 0.18247968 0.18456912 0.8
  0.32170045 0.41351205 0.32559984 0.3054048  0.5426147  0.3909998
  0.4238664  0.2235547  0.22792968 0.01355103]
 
-    \end{Verbatim}
+    \end{lstlisting}
 
     Jetzt werden wir überall wo mehr als 50\% an Wahrscheinlichkeit sind
 einen Punkt setzten
@@ -428,12 +430,12 @@ einen Punkt setzten
          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Und so als normaler Satz: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{str}\PY{p}{(}\PY{n}{ausgabe}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
+    \begin{lstlisting}[breaklines]
 So sieht es als array aus:  ['Das', 'ist', 'ein', 'Beispiel', 'Satz.', 'Hier', 'kommt', 'noch', 'ein', 'Satz.', 'Schauen', 'wir', 'mal', 'ob', 'die', 'Punkte', 'erkannt', 'werden.']
 
 Und so als normaler Satz:  Das ist ein Beispiel Satz. Hier kommt noch ein Satz. Schauen wir mal ob die Punkte erkannt werden.
 
-    \end{Verbatim}
+    \end{lstlisting}
 
     Wenn Sie jetzt aufgepasst haben ist ihnen sicher aufgefallen das wir die
 Satzanfänge und nicht die Satzenden aus dem KNN bekommen haben.
