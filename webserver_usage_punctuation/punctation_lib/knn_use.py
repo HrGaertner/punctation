@@ -48,15 +48,17 @@ def punctate(data):
         vec[1] = 0.0
         nulls = 0
         for iter in range(0, len(vec)):
-            if vec[iter] >= 0.5 and data[i-40 + iter] != 54:
-                #try:
+            if vec[iter] >= 0.5 and data[i-40 + iter] != 54: #and data[i-40 + iter] != 32 and data[i-40 + iter] != 24 and data[i-40 + iter] != 34 and data[i-40 + iter - 1] != 32 and data[i-40 + iter - 1] != 24 and data[i-40 + iter - 1] != 34:
                     sen[i - 40 + iter - 1] = sen[i - 40 + iter - 1] + "."
                     sen[i - 40 + iter] = sen[i - 40 + iter][0].upper() + sen[i - 40 + iter][1:]
-                    punctation = 40 - iter
-                #except:
-                #    sen[-1] = sen[-1] + "."
-                #    punctation = 0
-        i += 40 - punctation # NULL
+                    vec[iter] = 0.0
+                    try:
+                        vec[iter + 1] = 0.0
+                    except:
+                        pass
+                    break
+                    punctation = 39 - iter
+        i += 39 - punctation # NULL
     if sen[-1][-1] != ".":
         sen[-1] = sen[-1] + "."
     sen = ' '.join(sen)
