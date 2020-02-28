@@ -51,7 +51,7 @@ def punctate(data):
             if vec[iter] >= 0.5 and data[i-40 + iter] != 54:
                 try:
                     sen[i - 40 + iter - 1] = sen[i - 40 + iter - 1] + "."
-                    sen[i - 40 + iter] = sen[i - 40 + 1 + iter][0].upper() + sen[i - 40 + iter][1:]
+                    sen[i - 40 + iter] = sen[i - 40 + iter][0].upper() + sen[i - 40 + iter][1:]
                     punctation = 40 - iter
                 except:
                     sen[-1] = sen[-1] + "."
@@ -63,6 +63,6 @@ def punctate(data):
     return sen
 
 if __name__ == "__main__":
-    data = input("Was soll punktiert werden?")
+    data = input("Was soll punktiert werden? ")
     sen = punctate(data)
     print(sen)
