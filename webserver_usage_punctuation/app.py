@@ -10,6 +10,10 @@ socketio = SocketIO(app)
 r = sr.Recognizer()
 
 @app.route('/')
+def index_cookie():
+    return render_template('index_all.html')
+
+@app.route('/de')
 def index():
     return render_template('index.html')
 

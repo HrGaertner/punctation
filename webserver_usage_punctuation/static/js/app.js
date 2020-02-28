@@ -136,7 +136,7 @@ function stopRecording() {
 
 	//reset button just in case the recording is stopped while paused
 	pauseButton.innerHTML="Pause";
-	
+
 	//tell the recorder to stop the recording
 	rec.stop();
 
