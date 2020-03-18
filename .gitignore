@@ -4,10 +4,6 @@
 /webserver_usage_punctuation/output/
 /webserver_usage_punctuation/speech_recognition/
 /.idea
-/Models/dataset_bad.pickle
 /webserver_usage_punctuation/punctation_lib/punctator
 /webserver_usage_punctuation/punctation_lib/punctator.h5
-/jufo stand/model.ipynb
-/jufo stand/Präsi Aufteilung.odt
 /webserver_local/
-/venv/
