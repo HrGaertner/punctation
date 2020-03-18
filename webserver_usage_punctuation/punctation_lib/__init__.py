@@ -3,15 +3,41 @@ import nltk
 import numpy as np
 import time
 
+def read_pdf(file):
+    pass
 
 
-def process(data, tagged = None):
+def tag(liste):
+    with open('ClassifierBasedGermanTagger/germanTagger.pickle', 'rb') as f:
+        tagger = pickle.load(f)
+        tagged = tagger.tag(liste)
+        tags = []
+        for i in tagged:
+            tags.append(i[1])
+        return tags
+
+def process(data, tagged=None):
+    global tag
     if tagged is None:
-        def tag(liste):
-            with open('ClassifierBasedGermanTagger/germanTagger.pickle', 'rb') as f:
-                tagger = pickle.load(f)
-                return tagger.tag(liste)
         tagged = tag(nltk.word_tokenize(data, language="german"))
+
+    tag_set = ['PPER', 'APPRART', 'PWS', 'NE', 'PRELS', 'KOKOM', 'PIAT', 'CARD', 'VMINF', 'PIS', 'XY', 'PTKANT',
+               'PTKNEG', 'APPR', 'ADV', 'KON', 'VMFIN', 'APZR', 'ADJD', 'PDS', 'VVFIN', 'PRF', 'VAINF', 'ADJA', '$.',
+               'TRUNC', 'VVPP', 'PDAT', 'ART', 'NN', 'PPOSAT', 'VVINF', '$(', 'VAPP', '$,', 'PWAV', 'KOUS', 'KOUI',
+               'FM', 'VVIZU', 'VVIMP', 'VAFIN', 'PTKZU', 'PTKVZ', 'PROAV', 'VAIMP', 'NNE', 'PWAT', 'APPO', 'ITJ',
+               'PRELAT', 'VMPP', 'PPOSS', 'PTKA', 'NULL']
+
+    tags = []
+
+    for tag_part in tagged:
+        if tag_part in tag_set:
+            tags.append(tag_set.index(tag_part))
+        else:
+            print(tag_part)
+            raise (Exception)
+
+    tagged = tags
+
     feature = []
     vec = []
     punctation = []
@@ -22,11 +48,11 @@ def process(data, tagged = None):
     f_vector = []
 
     for i in range(0, len(tagged)):
-        if tagged[i] == "$.":
+        if tagged[i] == 24:
             event = True
             punctation = []
             punc_vec = []
-        elif tagged[i] == "$,":
+        elif tagged[i] == 34:
             pass
         else:
             feature.append(tagged[i])
@@ -50,34 +76,16 @@ def process(data, tagged = None):
 
     if len(feature) != 20:
         vec.append(1)
-        feature.append(("NULL", "NULL"))
+        feature.append(54)
         for i in range(len(vec), 20):
-            feature.append(("NULL", "NULL"))
+            feature.append(54)
             vec.append(0)
         f_feature.append(feature)
         f_vector.append(vec)
 
-    features = f_feature
-    tag_set = ['PPER', 'APPRART', 'PWS', 'NE', 'PRELS', 'KOKOM', 'PIAT', 'CARD', 'VMINF', 'PIS', 'XY', 'PTKANT',
-               'PTKNEG', 'APPR', 'ADV', 'KON', 'VMFIN', 'APZR', 'ADJD', 'PDS', 'VVFIN', 'PRF', 'VAINF', 'ADJA', '$.',
-               'TRUNC', 'VVPP', 'PDAT', 'ART', 'NN', 'PPOSAT', 'VVINF', '$(', 'VAPP', '$,', 'PWAV', 'KOUS', 'KOUI',
-               'FM', 'VVIZU', 'VVIMP', 'VAFIN', 'PTKZU', 'PTKVZ', 'PROAV', 'VAIMP', 'NNE', 'PWAT', 'APPO', 'ITJ',
-               'PRELAT', 'VMPP', 'PPOSS', 'PTKA', 'NULL']
-
-    i = 0
-    tags = []
-    for features_sen in features:
-        tag_sen = []
-        for tag in features_sen:
-            if tag[1] in tag_set:
-                tag_sen.append(tag_set.index(tag[1]))
-            else:
-                print(tag)
-                raise (Exception)
-        tags.append(tag_sen)
-        i += 1
     print(tags)
     with open('output/vec.pickle'+ str(time.time()), 'wb') as f_vec:
         pickle.dump(np.array(f_vector), f_vec)
     with open("output/feature.pickle"+ str(time.time()), "wb") as f:
-        pickle.dump(np.array(tags), f)
+        pickle.dump(np.array(f_feature), f)
+#Change Null
