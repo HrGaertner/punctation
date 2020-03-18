@@ -8,3 +8,4 @@ SpeechRecognition
 pip
 setuptools
 wheel
+pocketsphinx
