@@ -1,14 +1,22 @@
-from tensorflow.keras.models import load_model#Importing needed Modules
+from keras.models import load_model#Importing needed Modules
 import pickle
 import nltk
 import numpy as np
+from keras.utils.generic_utils import get_custom_objects
+from keras.layers import Activation
+import keras.backend as tf
 
-try:
-    model = load_model("punctation_lib/punctator")
-    model.load_weights("punctation_lib/punctator.h5")
-except:
-    model = load_model("punctator")
-    model.load_weights("punctator.h5")
+def unit_step_activation(x):
+    return tf.sign(x)
+
+get_custom_objects().update({'unit_step_activation': Activation(unit_step_activation)})
+
+#try:
+model = load_model("punctation_lib/unit_step-punctator")
+model.load_weights("punctation_lib/unit_step-punctator.h5")
+#except:
+#    model = load_model("punctator")
+#    model.load_weights("punctator.h5")
 
 def tag(tokenized):#tagging and converting to digits
     try:

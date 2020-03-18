@@ -1,10 +1,12 @@
 import numpy as np
-import tensorflow.keras.callbacks
-from tensorflow.keras.layers import Input, Dense, LSTM, Embedding
-from tensorflow.keras.models import Model
+import keras.callbacks
+from keras.layers import Input, Dense, LSTM, Embedding, Activation
+from keras.models import Model
+import keras.backend as tf
+from keras.utils.generic_utils import get_custom_objects
 import pickle
 
-early = tensorflow.keras.callbacks.EarlyStopping(monitor='loss',
+early = keras.callbacks.EarlyStopping(monitor='loss',
                                                  min_delta=0.03,
                                                  patience=2,
                                                  verbose=0, mode='auto')
@@ -14,13 +16,12 @@ early = tensorflow.keras.callbacks.EarlyStopping(monitor='loss',
 train_data, train_targets = np.array(train_data), np.array(train_targets)
 
 def unit_step_activation(x):
-    if x < 0:
-        return 0
-    else:
-        return 1
+    return tf.sign(x)
+
+get_custom_objects().update({'unit_step_activation': Activation(unit_step_activation)})
 
 def create_lstm_model(vocab_size, embedding_size=None, embedding_weights=None):
-    message = Input(shape=40, dtype='int32', name='lstm_input')
+    message = Input(shape=(40,), dtype='int32', name='lstm_input')
     embedding = Embedding(mask_zero=False, input_dim=55,
                           output_dim=128,
                           trainable=True,
@@ -28,7 +29,7 @@ def create_lstm_model(vocab_size, embedding_size=None, embedding_weights=None):
 
     lstm_1 = LSTM(units=128, return_sequences=False)(embedding)
     preds = Dense(40, activation='hard_sigmoid', name='lstm_predictions')(lstm_1)
-    unit_step = Dense(40, activation=unit_step_activation, name="clear ouput")(preds)
+    unit_step = Dense(40, activation=unit_step_activation, name="clear_ouput")(preds)
 
     model = Model(
         inputs=[message],
@@ -39,8 +40,8 @@ def create_lstm_model(vocab_size, embedding_size=None, embedding_weights=None):
 
 
 lstm_model = create_lstm_model(40, )
-lstm_model.save("punctator")
+lstm_model.save("unit_step-punctator")
 lstm_model.summary()
-lstm_model.fit(train_data, train_targets, epochs=12, batch_size=1024, callbacks=[early])
-lstm_model.save_weights("punctator.h5")
+lstm_model.fit(train_data, train_targets, epochs=1, batch_size=1024, callbacks=[early])
+lstm_model.save_weights("unit_step-punctator.h5")
 lstm_model.evaluate(test_data, test_targets)
