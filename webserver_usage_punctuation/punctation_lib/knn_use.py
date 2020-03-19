@@ -42,31 +42,31 @@ def punctate(data):
     data = tag(sen)
     punctation = 0
     nulls = 0
-    while len(data) % 40 != 0:  # You can divide through 40 so everything goes through the ANN
+    while len(data) % 20 != 0:  # You can divide through 20 so everything goes through the ANN
         data.append(54)
         nulls += 1
-    i = 40
+    i = 20
     while i <= len(data):
-        while len(data) % 40 != 0:  # You can divide through 40 so everything goes through the ANN
+        while len(data) % 20 != 0:  # You can divide through 20 so everything goes through the ANN
             data.append(54)
             nulls += 1
-        model_prepared = np.array([data[i - 40:i], data[i - 40:i]])
+        model_prepared = np.array([data[i - 20:i], data[i - 20:i]])
         vec = model.predict(model_prepared)[0]# Get the answer of the ANN
         vec[0] = 0.0# A sentence needs at least to words
         vec[1] = 0.0
         nulls = 0
         for iter in range(0, len(vec)):
-            if vec[iter] >= 0.5 and data[i-40 + iter] != 54: #and data[i-40 + iter] != 32 and data[i-40 + iter] != 24 and data[i-40 + iter] != 34 and data[i-40 + iter - 1] != 32 and data[i-40 + iter - 1] != 24 and data[i-40 + iter - 1] != 34:
-                    sen[i - 40 + iter - 1] = sen[i - 40 + iter - 1] + "."
-                    sen[i - 40 + iter] = sen[i - 40 + iter][0].upper() + sen[i - 40 + iter][1:]
+            if vec[iter] >= 0.5 and data[i-20 + iter] != 54: #and data[i-20 + iter] != 32 and data[i-20 + iter] != 24 and data[i-20 + iter] != 34 and data[i-20 + iter - 1] != 32 and data[i-20 + iter - 1] != 24 and data[i-20 + iter - 1] != 34:
+                    sen[i - 20 + iter - 1] = sen[i - 20 + iter - 1] + "."
+                    sen[i - 20 + iter] = sen[i - 20 + iter][0].upper() + sen[i - 20 + iter][1:]
                     vec[iter] = 0.0
                     try:
                         vec[iter + 1] = 0.0
                     except:
                         pass
                     break
-                    punctation = 39 - iter
-        i += 39 - punctation # NULL
+                    punctation = 19 - iter
+        i += 19 - punctation # NULL
     if sen[-1][-1] != ".":
         sen[-1] = sen[-1] + "."
     sen = ' '.join(sen)
