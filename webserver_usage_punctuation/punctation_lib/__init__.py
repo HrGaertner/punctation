@@ -83,9 +83,8 @@ def process(data, tagged=None):
         f_feature.append(feature)
         f_vector.append(vec)
 
-    print(tags)
-    with open('output/vec.pickle'+ str(time.time()), 'wb') as f_vec:
-        pickle.dump(np.array(f_vector), f_vec)
-    with open("output/feature.pickle"+ str(time.time()), "wb") as f:
+    time_step = int(time.time())
+    with open('output/vec_'+ time_step + ".pickle", 'wb') as f:
+        pickle.dump(np.array(f_vector), f)
+    with open("output/feature_"+ time_step + ".pickle", "wb") as f:
         pickle.dump(np.array(f_feature), f)
-#Change Null
