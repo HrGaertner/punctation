@@ -83,7 +83,7 @@ def process(data, tagged=None):
         f_feature.append(feature)
         f_vector.append(vec)
 
-    time_step = int(time.time())
+    time_step = str(int(time.time()))
     with open('output/vec_'+ time_step + ".pickle", 'wb') as f:
         pickle.dump(np.array(f_vector), f)
     with open("output/feature_"+ time_step + ".pickle", "wb") as f:
