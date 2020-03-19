@@ -3,8 +3,6 @@ import nltk
 import numpy as np
 import time
 
-
-
 def process(data, tagged = None):
     if tagged is None:
         def tag(liste):
@@ -36,8 +34,8 @@ def process(data, tagged = None):
                 punc_vec.append(1)
                 event = False
             else:
-                vec.append(0)
-                punc_vec.append(0)
+                vec.append(-1)
+                punc_vec.append(-1)
             if len(vec) == 20:
                 f_vector.append(vec)
                 f_feature.append(feature)
@@ -53,7 +51,7 @@ def process(data, tagged = None):
         feature.append(("NULL", "NULL"))
         for i in range(len(vec), 20):
             feature.append(("NULL", "NULL"))
-            vec.append(0)
+            vec.append(-1)
         f_feature.append(feature)
         f_vector.append(vec)
 
