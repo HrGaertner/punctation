@@ -2,9 +2,16 @@ import pickle
 import nltk
 import numpy as np
 import time
+import PyPDF2
 
 def read_pdf(file):
-    pass
+    with open(file, "rb") as f:
+        pdf = PyPDF2.PdfFileReader(f)
+        text = ""
+        for i in range(pdf.numPages):
+            page = pdf.getPage(i)
+            text += page.extractText()
+    return text
 
 
 def tag(liste):

@@ -9,3 +9,4 @@ pip
 setuptools
 wheel
 pocketsphinx
+PyPDF2
